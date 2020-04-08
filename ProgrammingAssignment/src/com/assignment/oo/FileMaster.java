@@ -1,6 +1,6 @@
 package com.assignment.oo;
 
-import java.io.PrintWriter;
+
 import java.util.Scanner;
 
 import java.io.File;
@@ -19,83 +19,21 @@ import java.io.FileNotFoundException;
  ************************************************************************************/
 
 public class FileMaster {
-	
-	String fileName;
-	Scanner myScanner;
-	PrintWriter pwInput;
-	File fileExample;
-	
-	// Constructor
-		FileMaster (String fileName)
-		{
-			
-			this.fileName = fileName;
-			
-		}
-		// get a connection to the file
-		void connectToFile()
-		{
-			fileExample = new File(fileName);
-		}
+	public static void main(String[] args) {
+		String fileName = "MLdataCSVfile.csv";
 		
-		// Read the file, returning a string of lines
-	    String[] readFile()
-	    {
-	    
-	    	String[] values = new String[6];
-		    try
-			{
-		    	int i = 0;
-		    	myScanner = new Scanner(fileExample); 
-				 while (myScanner.hasNextLine())
-				    {
-				      
-					 values[i] = myScanner.nextLine();
-				      i++;
-				    }
+		File file = new File(fileName);
+		try {
+			Scanner inputStream = new Scanner(file);
+			while (inputStream.hasNext()) {
+				String MLdataCSVfile = inputStream.next();
+				System.out.println(MLdataCSVfile);
+				
 			}
-			catch (FileNotFoundException e)
-			{
-				System.out.println("run time error " + e.getMessage());
-			}
-		    finally
-		    {
-		        return values;
-		    }
-	    }
-	    
-		// get hold of a Print writer object
-	    void getFileWriter()
-	    {
-	    	try
-	    	{
-	    		pwInput = new PrintWriter(fileExample);
-	    	}
-	  		catch (FileNotFoundException e)
-	  		{
-	  			System.out.println("run time error " + e.getMessage());
-	  		}
-	    	
-	    }	
-
-		// write a string to the file
-	    void writeLineToFile(String line)
-	    {
-	       System.out.println(line);
-	  		pwInput.println(line);    	
-	    }	
-
-	    
-	    
-	    void closeReadFile()
-	    {
-			 myScanner.close();
-	    }
-
-	    void closeWriteFile()
-	    {
-			 pwInput.close();
-	    }
-
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
-
+	
+}	
