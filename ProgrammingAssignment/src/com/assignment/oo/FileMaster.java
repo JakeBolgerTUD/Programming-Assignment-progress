@@ -1,10 +1,12 @@
 package com.assignment.oo;
 
 
+import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 
 /**************************************************
@@ -19,21 +21,25 @@ import java.io.FileNotFoundException;
  ************************************************************************************/
 
 public class FileMaster {
-	public static void main(String[] args) {
-		String fileName = "MLdataCSVfile.csv";
+	public static void main(String[] args) throws Exception{
+		/*
+		 * Reading CSV file into the array list
+		 */
 		
-		File file = new File(fileName);
-		try {
-			Scanner inputStream = new Scanner(file);
-			while (inputStream.hasNext()) {
-				String MLdataCSVfile = inputStream.next();
-				System.out.println(MLdataCSVfile);
-				
+		BufferedReader bufReader = new BufferedReader(new FileReader("MLdataCSVfile.csv")); 
+		ArrayList<String> symptomsList = new ArrayList<>();
+		
+		String line = bufReader.readLine(); 
+		while (line != null) { 
+			symptomsList.add(line); 
+			line = bufReader.readLine();
 			}
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		
+		bufReader.close();
+		
+		System.out.println(symptomsList);
 	}
+
+		
 	
 }	

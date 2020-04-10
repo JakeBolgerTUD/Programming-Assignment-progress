@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 *
 *****************************************************************/
 public class GUIscreen extends JFrame implements ActionListener {
-	
+	 
 	
 	/*attributes
 	 * 
