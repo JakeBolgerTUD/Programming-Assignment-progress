@@ -41,8 +41,10 @@ public class NaiveBayes {
 			if(symptom[5].equals("yes")) {
 				setHaveCoronaVirus(true);
 				setAmountHaveCorona(getAmountHaveCorona() + 1);
-				
-				System.out.println(getAmountHaveCorona()); 
+				/*
+				 * System.out.println(getAmountHaveCorona());
+				 */
+				 
 				 
 					
 			}
@@ -50,7 +52,9 @@ public class NaiveBayes {
 				setHaveCoronaVirus(false);
 				setAmountWithoutCorona(getAmountWithoutCorona() + 1);
 				
-				System.out.println(getAmountWithoutCorona());
+				/*
+				 * System.out.println(getAmountWithoutCorona());
+				 */
 				 	
 			}
 		}
