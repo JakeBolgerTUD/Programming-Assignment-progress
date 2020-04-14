@@ -21,7 +21,12 @@ import java.io.FileReader;
  ************************************************************************************/
 
 public class FileMaster {
+	
+	
 	public static void main(String[] args) throws Exception{
+		
+		
+		
 		/*
 		 * Reading CSV file into the array list
 		 */
@@ -36,10 +41,12 @@ public class FileMaster {
 			}
 		
 		bufReader.close();
-		
-		System.out.println(symptomsList);
+		/*
+		 * testing ArrayList
+		 */
+		System.out.print(symptomsList);
 	}
-
-		
-	
 }	
+	
+	
+

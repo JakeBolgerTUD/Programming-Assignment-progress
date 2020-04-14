@@ -1,6 +1,3 @@
-,,,,,Label
-Temperature ,Aches,Cough,Sore Throat,Recently Traveled from Danger Zone? ,Has Covid19 
-,,,,,
 hot,yes,yes,yes,yes,yes
 hot,yes,no,yes,no,yes
 normal,no,yes,no,no,no
