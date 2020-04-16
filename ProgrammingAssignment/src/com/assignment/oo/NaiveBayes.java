@@ -96,16 +96,54 @@ public class NaiveBayes {
 	/*
 	 * Constructor
 	 */
-	public NaiveBayes(ArrayList <String> symptomsList) {
-		
+	public NaiveBayes(ArrayList<String> symptomsList, boolean haveCoronaVirus, int amountHaveCorona,
+			int amountWithoutCorona, int tempHotYes, int tempHotNo, int tempNormalYes, int tempNormalNo,
+			int tempCoolYes, int tempCoolNo, int tempColdYes, int tempColdNo, int achesYes, int achesNo,
+			int noAchesYes, int noAchesNo, int coughYes, int coughNo, int noCoughYes, int noCoughNo,
+			int soreThroatYes, int soreThroatNo, int noSoreThroatYes, int noSoreThroatNo, int dangerZoneYes,
+			int dangerZoneNo, int noDangerZoneYes, int noDangerZoneNo) {
+		// TODO Auto-generated constructor stub
+	
+		/*
+		 * --Constructor variables
+		 */
 		this.setSymptomsList(symptomsList);
 		this.dataSetWorkings(symptomsList);
-		
-		
+		this.setHaveCoronaVirus(haveCoronaVirus);
+		this.setTempNormalYes(tempNormalYes);
+		this.setTempNormalNo(tempNormalNo);
+		this.setTempHotYes(tempHotYes);
+		this.setTempHotNo(tempHotNo);
+		this.setTempCoolYes(tempCoolYes);
+		this.setTempCoolNo(tempCoolNo);
+		this.setTempColdYes(tempColdYes);
+		this.setTempColdNo(tempColdNo);
+		this.setSoreThroatYes(noSoreThroatYes);
+		this.setSoreThroatNo(noSoreThroatNo);
+		this.setNoSoreThroatYes(noSoreThroatYes);
+		this.setNoSoreThroatNo(noSoreThroatNo);
+		this.setNoDangerZoneYes(noDangerZoneYes);
+		this.setNoDangerZoneNo(noDangerZoneNo);
+		this.setNoCoughYes(noCoughYes);
+		this.setNoCoughNo(noCoughNo);
+		this.setNoAchesYes(noAchesYes);
+		this.setNoAchesNo(noAchesNo);
+		this.setHaveCoronaVirus(haveCoronaVirus);
+		this.setDangerZoneYes(dangerZoneYes);
+		this.setDangerZoneNo(dangerZoneNo);
+		this.setCoughYes(coughYes);
+		this.setCoughNo(coughNo);
+		this.setAmountWithoutCorona(amountWithoutCorona);
+		this.setAmountHaveCorona(amountHaveCorona);
+		this.setAchesYes(achesYes);
+		this.setAchesNo(achesNo);
 	}
+		
 	
-			
-	
+
+
+
+
 
 	/*
 	 * Work out all the probabilities
@@ -253,11 +291,118 @@ public class NaiveBayes {
 				
 			}
 			
+			
+			/*
+			 * If they don't have the CoronaVirus..
+			 */
 			else if(isHaveCoronaVirus() == false) {
+				
+				/*
+				 * If first element(temperature) is hot, count tempHotNo
+				 */
+				if(symptom[0].contentEquals("hot")) {
+					
+					setTempHotNo(getTempHotNo() + 1);
+				}
+				
+				/*
+				 * If first element(temperature) is normal, count tempNormalNo
+				 */
+				else if(symptom[0].contentEquals("normal")) {
+					
+					setTempNormalNo(getTempNormalNo() + 1);
+				}
+				
+				/*
+				 * If first element(temperature) is cool, count tempCoolNo
+				 */
+				else if(symptom[0].contentEquals("cool")) {
+					
+					setTempCoolNo(getTempCoolNo() + 1);
+				}
+				
+				/*
+				 * If first element(temperature) is cold, count tempColdNo
+				 */
+				else if(symptom[0].contentEquals("cold")) {
+					
+					setTempColdNo(getTempColdNo() + 1);
+				}
+				
+				/*
+				 * If second element(Aches) is yes, count acheNo
+				 */
+				if(symptom[1].contentEquals("yes")) {
+					
+					setAchesNo(getAchesNo() + 1);
+				}
+				
+				/*
+				 * If second element(Aches) is no, count noAcheNo
+				 */
+				else {
+					
+					setNoAchesNo(getNoAchesNo() + 1);
+				}
+				
+				/*
+				 * If third element(Cough) is yes, count coughNo
+				 */
+				if(symptom[2].contentEquals("yes")) {
+					
+					setCoughNo(getCoughNo() + 1);
+				}
+				
+				/*
+				 * If third element(Aches) is no, count noCoughNo
+				 */
+				else {
+					
+					setNoCoughNo(getNoCoughNo() + 1);
+				}
+				
+				/*
+				 * If fourth element(Sore throat) is yes, count soreThroatNo
+				 */				
+				 
+				if(symptom[3].contentEquals("yes")) {
+					
+					setSoreThroatNo(getSoreThroatNo() + 1);
+				}
+				
+				/*
+				 * If fourth element(sore throat) is no, count noSoreThroatNo
+				 */
+				else {
+					
+					setNoSoreThroatNo(getNoSoreThroatNo() + 1);
+				}
+				
+				/*
+				 * if the fifth element(danger zone) is yes, count dangerZoneNo
+				 */
+				if(symptom[4].contentEquals("yes")) {
+					
+					setDangerZoneNo(getDangerZoneNo() + 1);
+				}
+				
+				/*
+				 * If the fifth element (danger zone) is no, count noDangerZoneNo 
+				 */
+				else {
+					
+					setNoDangerZoneNo(getNoDangerZoneNo() + 1);
+				}
 				
 			}
 		}
 	}
+	
+	
+	/*
+	 * Getters and Setter methods for all attributes(Encapsulation)
+	 */
+	
 	public ArrayList<String> symptomsList() {
 		return symptomsList;
 	}
@@ -845,7 +990,7 @@ public class NaiveBayes {
 
 /*
 
- * --Pre-Computations for Classifier--
+ * --Calculations to check if answers were right for Classifier--
  * 
  * 
  * Have CoronaVirus: p(yes) = 17/76, p(no) = 59/76

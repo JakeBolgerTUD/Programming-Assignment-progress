@@ -28,10 +28,17 @@ public class FileMaster {
 		
 		
 		/*
-		 * Reading CSV file into the array list
+		 * Reading CSV file into the array list using BufferedReader
+		 * Found BufferedReader online
+		 * https://www.guru99.com/buffered-reader-in-java.html
+		 * (BufferedReader bufReader = new BufferedReader(new FileReader("MLdataCSVfile.csv"));)
 		 */
 		
 		BufferedReader bufReader = new BufferedReader(new FileReader("MLdataCSVfile.csv")); 
+		
+		/*
+		 * Creating ArrayList symptomsList
+		 */
 		ArrayList<String> symptomsList = new ArrayList<>();
 		
 		String line = bufReader.readLine(); 
@@ -41,10 +48,16 @@ public class FileMaster {
 			}
 		
 		bufReader.close();
+		
 		/*
-		 * testing ArrayList
+		 * testing ArrayList to see if it works:
+		 * 
+		 * System.out.print(symptomsList);
 		 */
-		System.out.print(symptomsList);
+		
+		  
+		 
+		
 	}
 }	
 	
