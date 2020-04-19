@@ -1,14 +1,6 @@
 package com.assignment.oo;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 /*****************************************************************
 *   CoronaVirus Diagnostic Tool
@@ -17,85 +9,150 @@ import javax.swing.JPanel;
 *   March 2019
 *
 *****************************************************************/
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+
+
 public class GUIscreen extends JFrame implements ActionListener {
-	 
 	
-	/*attributes
+	//creating screen elements
+	
+	
+	/**
 	 * 
 	 */
-	private JLabel tempLabel, achesLabel, coughLabel, soreThroatLabel, dangerZoneLabel;
-	private JCheckBox tempBox1, tempBox2, tempBox3, achesYes, achesNo, coughYes, coughNo, throatNo, throatYes, dangerYes, dangerNo;
-	private JPanel centrePanel, northPanel, nextPanel, lastPanel, fifthPanel;
+	private static final long serialVersionUID = 1L;
+
+	JPanel northPanel, southPanel, eastPanel, westPanel, centerPanel;
 	
+	JButton checkProbability;
 	
-	/*Constructor
-	 * 
-	 */
-	GUIscreen(String title)
-	{
-		super(title);
-		setSize(300,300);
+	JRadioButton temperatureButtonHot, temperatureButtonNormal,temperatureButtonCool, temperatureButtonCold;
+	JRadioButton achesButtonYes, achesButtonNo ;
+	JRadioButton coughButtonYes, coughButtonNo ;
+	JRadioButton soreThroatButtonYes, soreThroatButtonNo;
+	JRadioButton dangerZoneButtonYes, dangerZoneButtonNo;
+	
+	ButtonGroup group1, group2, group3, group4, group5;
+	
+	JLabel symptomsLabel, label1, label2, label3, label4 ,label5;
+	
+	NaiveBayes fileData;
+	
+	public GUIscreen(String title) {
 		
+		//organising screen elements
+		super("CoronaVirus Diagnostic Tool");
+		setSize(600, 600);
 		BorderLayout bl1 = new BorderLayout();
+		
+		
+				
+		checkProbability = new JButton("Check");
+		
+		temperatureButtonHot = new JRadioButton("hot");
+		temperatureButtonNormal = new JRadioButton("normal");
+		temperatureButtonCool = new JRadioButton("cool");
+		temperatureButtonCold = new JRadioButton("cold");
+		
+		achesButtonYes = new JRadioButton("yes");
+		achesButtonNo = new JRadioButton("no");
+		
+		coughButtonYes = new JRadioButton("yes");
+		coughButtonNo = new JRadioButton("no");
+		
+		soreThroatButtonYes = new JRadioButton("yes");
+		soreThroatButtonNo = new JRadioButton("no");
+		
+		dangerZoneButtonYes = new JRadioButton("yes");
+		dangerZoneButtonNo = new JRadioButton("no");
+		
+		group1 = new ButtonGroup();
+		group2 =new ButtonGroup();
+		group3 = new ButtonGroup();
+		group4 = new ButtonGroup();
+		group5 = new ButtonGroup();
+		
+		symptomsLabel = new JLabel("*----------------------------------------Please select your symptoms----------------------------------------*");
+		
+		label1 = new JLabel("Temperature : ");
+		label2 = new JLabel("Aches : ");
+		label3 = new JLabel("Cough : ");
+		label4 = new JLabel("Sore Throat : ");
+		label5 = new JLabel("Recently Visited Danger Zone : ");
+		
+		group1.add(temperatureButtonHot);
+		group1.add(temperatureButtonNormal);
+		group1.add(temperatureButtonCool);
+		group1.add(temperatureButtonCold);
+		
+		group2.add(achesButtonYes);
+		group2.add(achesButtonNo);
+		
+		group3.add(coughButtonYes);
+		group3.add(coughButtonNo);
+		
+		group4.add(soreThroatButtonYes);
+		group4.add(soreThroatButtonNo);
+		
+		group5.add(dangerZoneButtonYes);
+		group5.add(dangerZoneButtonNo);
+		
+		
+		
+		
 		setLayout(bl1);
 		
-		/*Instantiating GUI components
-		 * 
-		 */
-		setTempLabel(new JLabel("Temperature:"));
-		setTempBox1(new JCheckBox("Hot"));
-		setTempBox2(new JCheckBox("Normal"));
-		setTempBox3(new JCheckBox("Cool"));
-		setAchesLabel(new JLabel("Aches:"));
-		setAchesYes(new JCheckBox("Yes"));
-		setAchesNo(new JCheckBox("No"));
-		setCoughLabel(new JLabel("Cough:"));
-		setCoughYes(new JCheckBox("Yes"));
-		setCoughNo(new JCheckBox("No"));
-		setSoreThroatLabel(new JLabel("Sore Throat:"));
-		setThroatYes(new JCheckBox("Yes"));
-		setThroatNo(new JCheckBox("No"));
-		setDangerZoneLabel(new JLabel("Recently travelled to danger zone"));
-		setDangerYes(new JCheckBox("Yes"));
-		setDangerNo(new JCheckBox("No"));
+		centerPanel = new JPanel();
+		centerPanel.setLayout(new GridLayout(20, 1));
+		northPanel = new JPanel();
+		southPanel = new JPanel();
+		southPanel.setLayout(new GridLayout(1,1));
 		
-		setNorthPanel(new JPanel());
-		setCentrePanel(new JPanel());
-		setNextPanel(new JPanel());
-		setLastPanel(new JPanel());
-		setFifthPanel(new JPanel());
 		
-		getTempBox1().addActionListener(this);
-		getTempBox2().addActionListener(this);
-		getTempBox3().addActionListener(this);
 		
-	
-		getNorthPanel().add(getTempLabel());
-		getNorthPanel().add(getTempBox1());
-		getNorthPanel().add(getTempBox2());
-		getNorthPanel().add(getTempBox3());
-		getCentrePanel().add(getAchesLabel());
-		getCentrePanel().add(getAchesYes());
-		getCentrePanel().add(getAchesNo());
-		getNextPanel().add(getCoughLabel());
-		getNextPanel().add(getCoughYes());
-		getNextPanel().add(getCoughNo());
-		getLastPanel().add(getSoreThroatLabel());
-		getLastPanel().add(getThroatYes());
-		getLastPanel().add(getThroatNo());
-		getFifthPanel().add(getDangerZoneLabel());
-		getFifthPanel().add(getDangerYes());
-		getFifthPanel().add(getDangerNo());
+		northPanel.add(symptomsLabel);
 		
-		add(getNorthPanel(), BorderLayout.NORTH);
-		add(getCentrePanel(), BorderLayout.WEST);
-		add(getNextPanel(), BorderLayout.CENTER);
-		add(getLastPanel(), BorderLayout.EAST);
-		add(getFifthPanel(), BorderLayout.SOUTH);
+		centerPanel.add(label1);
+		centerPanel.add(temperatureButtonHot);
+		centerPanel.add(temperatureButtonNormal);
+		centerPanel.add(temperatureButtonCool);
+		centerPanel.add(temperatureButtonCold);
+		
+		centerPanel.add(label2); 
+		centerPanel.add(achesButtonYes);
+		centerPanel.add(achesButtonNo);
+		
+		centerPanel.add(label3);
+		centerPanel.add(coughButtonYes);
+		centerPanel.add(coughButtonNo);
+		
+		centerPanel.add(label4);
+		centerPanel.add(soreThroatButtonYes);
+		centerPanel.add(soreThroatButtonNo);
+		
+		centerPanel.add(label5);
+		centerPanel.add(dangerZoneButtonYes);
+		centerPanel.add(dangerZoneButtonNo);
+		
+		southPanel.add(checkProbability);
+		
+		
+		add(centerPanel, BorderLayout.CENTER);
+		add(northPanel, BorderLayout.NORTH);
+		add(southPanel, BorderLayout.SOUTH);
 		
 		setVisible(true);
 	}
-
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -103,215 +160,9 @@ public class GUIscreen extends JFrame implements ActionListener {
 		
 	}
 
-
-	public JLabel getTempLabel() {
-		return tempLabel;
-	}
-
-
-	public void setTempLabel(JLabel tempLabel) {
-		this.tempLabel = tempLabel;
-	}
-
-
-	public JLabel getAchesLabel() {
-		return achesLabel;
-	}
-
-
-	public void setAchesLabel(JLabel achesLabel) {
-		this.achesLabel = achesLabel;
-	}
-
-
-	public JLabel getCoughLabel() {
-		return coughLabel;
-	}
-
-
-	public void setCoughLabel(JLabel coughLabel) {
-		this.coughLabel = coughLabel;
-	}
-
-
-	public JLabel getSoreThroatLabel() {
-		return soreThroatLabel;
-	}
-
-
-	public void setSoreThroatLabel(JLabel soreThroatLabel) {
-		this.soreThroatLabel = soreThroatLabel;
-	}
-
-
-	public JLabel getDangerZoneLabel() {
-		return dangerZoneLabel;
-	}
-
-
-	public void setDangerZoneLabel(JLabel dangerZoneLabel) {
-		this.dangerZoneLabel = dangerZoneLabel;
-	}
-
-
-	public JCheckBox getTempBox1() {
-		return tempBox1;
-	}
-
-
-	public void setTempBox1(JCheckBox tempBox1) {
-		this.tempBox1 = tempBox1;
-	}
-
-
-	public JCheckBox getTempBox2() {
-		return tempBox2;
-	}
-
-
-	public void setTempBox2(JCheckBox tempBox2) {
-		this.tempBox2 = tempBox2;
-	}
-
-
-	public JCheckBox getTempBox3() {
-		return tempBox3;
-	}
-
-
-	public void setTempBox3(JCheckBox tempBox3) {
-		this.tempBox3 = tempBox3;
-	}
-
-
-	public JCheckBox getAchesYes() {
-		return achesYes;
-	}
-
-
-	public void setAchesYes(JCheckBox achesYes) {
-		this.achesYes = achesYes;
-	}
-
-
-	public JCheckBox getAchesNo() {
-		return achesNo;
-	}
-
-
-	public void setAchesNo(JCheckBox achesNo) {
-		this.achesNo = achesNo;
-	}
-
-
-	public JCheckBox getCoughYes() {
-		return coughYes;
-	}
-
-
-	public void setCoughYes(JCheckBox coughYes) {
-		this.coughYes = coughYes;
-	}
-
-
-	public JCheckBox getCoughNo() {
-		return coughNo;
-	}
-
-
-	public void setCoughNo(JCheckBox coughNo) {
-		this.coughNo = coughNo;
-	}
-
-
-	public JCheckBox getThroatNo() {
-		return throatNo;
-	}
-
-
-	public void setThroatNo(JCheckBox throatNo) {
-		this.throatNo = throatNo;
-	}
-
-
-	public JCheckBox getThroatYes() {
-		return throatYes;
-	}
-
-
-	public void setThroatYes(JCheckBox throatYes) {
-		this.throatYes = throatYes;
-	}
-
-
-	public JCheckBox getDangerYes() {
-		return dangerYes;
-	}
-
-
-	public void setDangerYes(JCheckBox dangerYes) {
-		this.dangerYes = dangerYes;
-	}
-
-
-	public JCheckBox getDangerNo() {
-		return dangerNo;
-	}
-
-
-	public void setDangerNo(JCheckBox dangerNo) {
-		this.dangerNo = dangerNo;
-	}
-
-
-	public JPanel getCentrePanel() {
-		return centrePanel;
-	}
-
-
-	public void setCentrePanel(JPanel centrePanel) {
-		this.centrePanel = centrePanel;
-	}
-
-
-	public JPanel getNorthPanel() {
-		return northPanel;
-	}
-
-
-	public void setNorthPanel(JPanel northPanel) {
-		this.northPanel = northPanel;
-	}
-
-
-	public JPanel getNextPanel() {
-		return nextPanel;
-	}
-
-
-	public void setNextPanel(JPanel nextPanel) {
-		this.nextPanel = nextPanel;
-	}
-
-
-	public JPanel getLastPanel() {
-		return lastPanel;
-	}
-
-
-	public void setLastPanel(JPanel lastPanel) {
-		this.lastPanel = lastPanel;
-	}
-
-
-	public JPanel getFifthPanel() {
-		return fifthPanel;
-	}
-
-
-	public void setFifthPanel(JPanel fifthPanel) {
-		this.fifthPanel = fifthPanel;
-	}
 	
-
+	 
+	
+	
+	
 }
