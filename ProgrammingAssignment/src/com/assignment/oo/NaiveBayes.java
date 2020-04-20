@@ -1,12 +1,32 @@
 package com.assignment.oo;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class NaiveBayes {
 	
 	
+	/*
+	 * ArrayList taken from FileMaster class
+	 */
+	ArrayList<String> symptomsList;
 	
+	/*
+	 * Constructor
+	 */
+	public NaiveBayes(ArrayList <String> symptomsList) {
+		// TODO Auto-generated constructor stub
+	
+		/*
+		 * --Constructor variables
+		 */
+		this.setSymptomsList(symptomsList);
+		
+		
+		this.dataSetWorkings(symptomsList);
+		
+		
+	}
 	 
 	
 	/*
@@ -90,33 +110,8 @@ public class NaiveBayes {
 	private int noDangerZoneYes = 0;
 	private int noDangerZoneNo = 0;
 	
-	/*
-	 * ArrayList taken from FileMaster class
-	 */
-	ArrayList<String> symptomsList;
 	
 	
-	/*
-	 * Constructor
-	 */
-	public NaiveBayes(ArrayList <String> symptomsList) {
-		// TODO Auto-generated constructor stub
-	
-		/*
-		 * --Constructor variables
-		 */
-		this.setSymptomsList(symptomsList);
-		this.dataSetWorkings(symptomsList);
-		
-		
-	}
-		
-	
-
-
-
-
-
 	/*
 	 * Work out all the probabilities
 	 */
@@ -130,6 +125,9 @@ public class NaiveBayes {
 		 */
 		for(int i = 0; i < symptomsList.size(); i++) {
 			
+			/*
+			 * splitting at " ".
+			 */
 			String[] symptom = symptomsList.get(i).split(" ");
 			
 			
@@ -606,24 +604,16 @@ public class NaiveBayes {
 		 * probabilityYes is equal to the manageProbabilty Method with var1 and var2 acting as firstNum and secondNum
 		 */
 		probabilityYes = manageProbability(var1, var2);
-		probabilityYes = (int)(probabilityYes * 100);
-		
 		probabilityNo = manageProbability(var2, var1);
-		probabilityNo= (int)(probabilityNo * 100);
-				
-		
-		/*
-		 * 
-		 */
-		
-								
-
-		
 		/*
 		 * If the yes is greater than no return yes
 		 */
+		/*
+		 * returning the probability in a percentage
+		 * Not sure how to link the GUI with this
+		 */
 		if (probabilityYes > probabilityNo) {
-			String answer1 = "You are " + probabilityYes + "% likely to have the CoronaVirus";
+			String answer1 = "---" + probabilityYes + "% Chance";
 			
 			return answer1;
 		}
@@ -632,7 +622,7 @@ public class NaiveBayes {
 		 *  If the no is greater than yes return no
 		 */
 		else {
-			String answer2 = "You are only " + probabilityNo + "% likely to have the CoronaVirus ";
+			String answer2 = "--- " + probabilityNo + "% Chance";
 			
 			return answer2;
 		}
@@ -654,10 +644,19 @@ public class NaiveBayes {
 		 */
 		double finalProb;
 		
-		finalProb = 	( (double)tempCounter / (double)patientCounter ) * ( (double)achesCounter / (double)patientCounter ) *
-								( (double)coughCounter / (double)patientCounter ) * ( (double)soreThroatCounter / (double)patientCounter ) *								
-								( (double)dangerZoneCounter / (double)patientCounter ) * ( (double)patientCounter / (double)(getAmountHaveCorona() + getAmountWithoutCorona() ));
+		double sum1, sum2, sum3;
+		
+		/*
+		 * splitting into three sums(easier to read)
+		 */
+		sum1 = 	( (double)tempCounter / (double)patientCounter ) * ( (double)achesCounter / (double)patientCounter );
+							
+		sum2 =	( (double)coughCounter / (double)patientCounter ) * ( (double)soreThroatCounter / (double)patientCounter ); 								
+							
+		sum3 = 	( (double)dangerZoneCounter / (double)patientCounter ) * ( (double)patientCounter / (double)(getAmountHaveCorona() + getAmountWithoutCorona() ));
 																								//^this^ is "last sum".
+		
+		finalProb = sum1 * sum2 * sum3;
 		/*
 		 * Return answer to sum
 		 */
@@ -672,11 +671,13 @@ public class NaiveBayes {
 	public double manageProbability(double firstNum, double secondNum) {
 		
 		double finalProb;
+		double sum4 = firstNum + secondNum;
 		
 		/*
 		 * sum to divide(final calculations)
 		 */
-		finalProb = firstNum / (firstNum + secondNum);
+		finalProb = firstNum / sum4;
+		
 		return finalProb;
 	}
 	
