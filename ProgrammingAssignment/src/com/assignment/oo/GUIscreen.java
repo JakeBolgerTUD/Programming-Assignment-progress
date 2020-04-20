@@ -172,7 +172,14 @@ public class GUIscreen extends JFrame implements ActionListener {
 	   if (bayesEvent.getSource() == checkProbability)
 	   {	
 		   try {
-				JOptionPane.showMessageDialog();
+				JOptionPane.showMessageDialog(message,algorithmData.patientAccess(temperatureButtonHot,
+						temperatureButtonNormal, temperatureButtonCool,
+						temperatureButtonCold, achesButtonYes,
+						achesButtonNo, coughButtonYes,
+						coughButtonNo,soreThroatButtonYes,
+						soreThroatButtonNo, dangerZoneButtonYes,
+						dangerZoneButtonNo));
+			
 			}
 			catch(Exception DataNotExistent) {
 				JOptionPane.showMessageDialog(message,"error");

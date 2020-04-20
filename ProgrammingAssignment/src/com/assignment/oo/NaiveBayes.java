@@ -609,8 +609,7 @@ public class NaiveBayes {
 		 * If the yes is greater than no return yes
 		 */
 		/*
-		 * returning the probability in a percentage
-		 * Not sure how to link the GUI with this
+		 * returning the probability
 		 */
 		if (probabilityYes > probabilityNo) {
 			String answer1 = "---" + probabilityYes + "% Chance";
