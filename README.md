@@ -5,6 +5,7 @@ In this program there are four classes. The GUI class uses JRadioButtons to allo
 The Control class calls the GUI so it can display it.
 The FileMaster class reads in a csv file containing data for the patients symptoms. I've used bubfferedReader to do this.
 The NaiveBayes class does all the calculations using Naive Bayes. It counts all the probabilities needed to calculate the probability and stores them in variables to be used. It does this by splitting the csv file into an arraylist and accessing all the elements. it then stores all the probabilities in variables deoending on what the user has selected and then using the Naive Bayes algorithm it returns the probability.
-**NOTE: GUI does not Fully Function**
+
+**NOTE: GUI does not Fully Function and practicearray class is not part of program**
 Jake Bolger
 C18395341
