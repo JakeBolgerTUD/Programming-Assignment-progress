@@ -9,7 +9,9 @@ public class Control {
 		/*
 		 * calling the GUIscreen
 		 */
-		GUIscreen GUIscreen = new GUIscreen("CoronaVirus Diagnostic Tool");
+		@SuppressWarnings("unused")
+		
+		GUIscreen screen = new GUIscreen("CoronaVirus Diagnostic Tool");
 		
 	}
 

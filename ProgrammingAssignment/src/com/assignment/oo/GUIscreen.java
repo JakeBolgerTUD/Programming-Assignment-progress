@@ -18,13 +18,14 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 
 public class GUIscreen extends JFrame implements ActionListener {
 	
-	//creating screen elements
+	
 	
 	
 	/**
@@ -42,17 +43,20 @@ public class GUIscreen extends JFrame implements ActionListener {
 	JRadioButton soreThroatButtonYes, soreThroatButtonNo;
 	JRadioButton dangerZoneButtonYes, dangerZoneButtonNo;
 	
+	
 	ButtonGroup group1, group2, group3, group4, group5;
 	
 	JLabel symptomsLabel, label1, label2, label3, label4 ,label5;
 	
-	NaiveBayes fileData;
+	NaiveBayes algorithmData;
+	
+	JFrame message;
 	
 	public GUIscreen(String title) {
 		
 		//organising screen elements
 		super("CoronaVirus Diagnostic Tool");
-		setSize(600, 600);
+		setSize(700, 600);
 		BorderLayout bl1 = new BorderLayout();
 		
 		
@@ -114,7 +118,10 @@ public class GUIscreen extends JFrame implements ActionListener {
 		
 		centerPanel = new JPanel();
 		centerPanel.setLayout(new GridLayout(20, 1));
+		
 		northPanel = new JPanel();
+		
+		
 		southPanel = new JPanel();
 		southPanel.setLayout(new GridLayout(1,1));
 		
@@ -153,15 +160,26 @@ public class GUIscreen extends JFrame implements ActionListener {
 		
 		setVisible(true);
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	
+
+	 public void actionPerformed(ActionEvent bayesEvent) 
+	  {
+	  	
+		//Using the button 
 	 
+	   if (bayesEvent.getSource() == checkProbability)
+	   {	
+		   try {
+				JOptionPane.showMessageDialog();
+			}
+			catch(Exception DataNotExistent) {
+				JOptionPane.showMessageDialog(message,"error");
+			}
+		
+	   }
+	  }
 	
 	
 	

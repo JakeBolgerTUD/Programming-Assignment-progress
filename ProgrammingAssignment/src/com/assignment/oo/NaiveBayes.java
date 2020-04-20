@@ -1,14 +1,12 @@
 package com.assignment.oo;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class NaiveBayes {
 	
 	
-	/*
-	 * ArrayList taken from FileMaster class
-	 */
-	ArrayList<String> symptomsList;
+	
 	 
 	
 	/*
@@ -17,32 +15,32 @@ public class NaiveBayes {
 	 *
 	 */
 	private boolean haveCoronaVirus;
-	private int amountHaveCorona;
-	private int amountWithoutCorona;
+	private int amountHaveCorona = 0;
+	private int amountWithoutCorona = 0;
 	
 	/*
 	 * Have a hot temperature and have/don't have the CoronaVirus
 	 */
-	private int tempHotYes;
-	private int tempHotNo;
+	private int tempHotYes = 0;
+	private int tempHotNo = 0;
 	
 	/*
 	 * Have a normal temperature and have/don't have the CoronaVirus
 	 */
-	private int tempNormalYes;
-	private int tempNormalNo;
+	private int tempNormalYes = 0;
+	private int tempNormalNo = 0;
 	
 	/*
 	 * Have a cool temperature and have/don't have the CoronaVirus
 	 */
-	private int tempCoolYes;
-	private int tempCoolNo;
+	private int tempCoolYes = 0;
+	private int tempCoolNo= 0;
 		
 	/*
 	 * Have a cold temperature and have/don't have the CoronaVirus
 	 */
-	private int tempColdYes;
-	private int tempColdNo;
+	private int tempColdYes = 0;
+	private int tempColdNo = 0;
 	
 	/*
 	 * Have aches and have/dont't have the Virus
@@ -59,49 +57,49 @@ public class NaiveBayes {
 	/*
 	 * Have cough and have/don't have Virus
 	 */
-	private int coughYes;
-	private int coughNo;
+	private int coughYes = 0;
+	private int coughNo = 0;
 	
 	/*
 	 * Don't have the cough and have/don't have the virus
 	 */
-	private int noCoughYes;
-	private int noCoughNo;
+	private int noCoughYes = 0;
+	private int noCoughNo = 0;
 	
 	/*
 	 * Have sore throat and have/don't have the virus
 	 */
-	private int soreThroatYes;
-	private int soreThroatNo;
+	private int soreThroatYes = 0;
+	private int soreThroatNo = 0;
 	
 	/*
 	 * Don't have sore throat and have/don't have the virus
 	 */
-	private int noSoreThroatYes;
-	private int noSoreThroatNo;
+	private int noSoreThroatYes = 0;
+	private int noSoreThroatNo = 0;
 	
 	/*
 	 * Recently traveled to danger zone and have/don't have virus
 	 */
-	private int dangerZoneYes;
-	private int dangerZoneNo;
+	private int dangerZoneYes = 0;
+	private int dangerZoneNo = 0;
 	
 	/*
 	 * Havn't Recently traveled to danger zone and have/don't have virus
 	 */
-	private int noDangerZoneYes;
-	private int noDangerZoneNo;
+	private int noDangerZoneYes = 0;
+	private int noDangerZoneNo = 0;
+	
+	/*
+	 * ArrayList taken from FileMaster class
+	 */
+	ArrayList<String> symptomsList;
 	
 	
 	/*
 	 * Constructor
 	 */
-	public NaiveBayes(ArrayList<String> symptomsList, boolean haveCoronaVirus, int amountHaveCorona,
-			int amountWithoutCorona, int tempHotYes, int tempHotNo, int tempNormalYes, int tempNormalNo,
-			int tempCoolYes, int tempCoolNo, int tempColdYes, int tempColdNo, int achesYes, int achesNo,
-			int noAchesYes, int noAchesNo, int coughYes, int coughNo, int noCoughYes, int noCoughNo,
-			int soreThroatYes, int soreThroatNo, int noSoreThroatYes, int noSoreThroatNo, int dangerZoneYes,
-			int dangerZoneNo, int noDangerZoneYes, int noDangerZoneNo) {
+	public NaiveBayes(ArrayList <String> symptomsList) {
 		// TODO Auto-generated constructor stub
 	
 		/*
@@ -109,34 +107,8 @@ public class NaiveBayes {
 		 */
 		this.setSymptomsList(symptomsList);
 		this.dataSetWorkings(symptomsList);
-		this.setHaveCoronaVirus(haveCoronaVirus);
-		this.setTempNormalYes(tempNormalYes);
-		this.setTempNormalNo(tempNormalNo);
-		this.setTempHotYes(tempHotYes);
-		this.setTempHotNo(tempHotNo);
-		this.setTempCoolYes(tempCoolYes);
-		this.setTempCoolNo(tempCoolNo);
-		this.setTempColdYes(tempColdYes);
-		this.setTempColdNo(tempColdNo);
-		this.setSoreThroatYes(noSoreThroatYes);
-		this.setSoreThroatNo(noSoreThroatNo);
-		this.setNoSoreThroatYes(noSoreThroatYes);
-		this.setNoSoreThroatNo(noSoreThroatNo);
-		this.setNoDangerZoneYes(noDangerZoneYes);
-		this.setNoDangerZoneNo(noDangerZoneNo);
-		this.setNoCoughYes(noCoughYes);
-		this.setNoCoughNo(noCoughNo);
-		this.setNoAchesYes(noAchesYes);
-		this.setNoAchesNo(noAchesNo);
-		this.setHaveCoronaVirus(haveCoronaVirus);
-		this.setDangerZoneYes(dangerZoneYes);
-		this.setDangerZoneNo(dangerZoneNo);
-		this.setCoughYes(coughYes);
-		this.setCoughNo(coughNo);
-		this.setAmountWithoutCorona(amountWithoutCorona);
-		this.setAmountHaveCorona(amountHaveCorona);
-		this.setAchesYes(achesYes);
-		this.setAchesNo(achesNo);
+		
+		
 	}
 		
 	
@@ -152,10 +124,13 @@ public class NaiveBayes {
 		
 		/*
 		 * Splits each person into separate ArrayList so they can be accessed
+		 *  I Learn't how to do this by looking online:
+		 *  https://javadevnotes.com/java-split-string-into-arraylist-examples
+		 *
 		 */
 		for(int i = 0; i < symptomsList.size(); i++) {
 			
-			String[] symptom = symptomsList.get(i).split(",");
+			String[] symptom = symptomsList.get(i).split(" ");
 			
 			
 			 /*
@@ -198,14 +173,14 @@ public class NaiveBayes {
 				/*
 				 * If the first element(temperature) is hot, count tempHotYes
 				 */
-				if(symptom[0].contentEquals("hot")) {
+				if(symptom[0].equals("hot")) {
 					setTempHotYes(getTempHotYes() + 1);
 				}
 				
 				/*
 				 * If the first element(temperature) is normal, count tempNormalYes
 				 */
-				else if(symptom[0].contentEquals("normal")) {
+				else if(symptom[0].equals("normal")) {
 					
 					setTempNormalYes(getTempNormalYes() + 1);
 				}
@@ -213,7 +188,7 @@ public class NaiveBayes {
 				/*
 				 * If the first element(temperature) is cool, count tempCoolYes
 				 */
-				else if(symptom[0].contentEquals("cool")) {
+				else if(symptom[0].equals("cool")) {
 					
 					setTempCoolYes(getTempCoolYes() + 1);
 				}
@@ -221,7 +196,7 @@ public class NaiveBayes {
 				/*
 				 * If the first element(temperature) is cold, count tempColdYes
 				 */
-				else if(symptom[0].contentEquals("cold")) {
+				else if(symptom[0].equals("cold")) {
 					
 					setTempColdYes(getTempColdYes() + 1);
 				}
@@ -229,7 +204,7 @@ public class NaiveBayes {
 				/*
 				 * If the second element(Aches) is yes, count achesYes
 				 */
-				if(symptom[1].contentEquals("yes")) {
+				if(symptom[1].equals("yes")) {
 					setAchesYes(getAchesYes() + 1);
 				}
 				
@@ -244,7 +219,7 @@ public class NaiveBayes {
 				/*
 				 * If the third element(Cough) is yes, count coughYes
 				 */
-				if(symptom[2].contentEquals("yes")) {
+				if(symptom[2].equals("yes")) {
 					
 					setCoughYes(getCoughYes() + 1);
 				}
@@ -260,7 +235,7 @@ public class NaiveBayes {
 				/*
 				 * If fourth element(sore throat) is yes, count sorethroatYes
 				 */
-				if(symptom[3].contentEquals("yes")) {
+				if(symptom[3].equals("yes")) {
 					
 					setSoreThroatYes(getSoreThroatYes() + 1);
 				}
@@ -276,7 +251,7 @@ public class NaiveBayes {
 				/*
 				 * If fifth element(Danger zone) is yes, count dangerZoneYes
 				 */
-				if(symptom[4].contentEquals("yes")) {
+				if(symptom[4].equals("yes")) {
 					
 					setDangerZoneYes(getDangerZoneYes() + 1);
 				}
@@ -300,7 +275,7 @@ public class NaiveBayes {
 				/*
 				 * If first element(temperature) is hot, count tempHotNo
 				 */
-				if(symptom[0].contentEquals("hot")) {
+				if(symptom[0].equals("hot")) {
 					
 					setTempHotNo(getTempHotNo() + 1);
 				}
@@ -308,7 +283,7 @@ public class NaiveBayes {
 				/*
 				 * If first element(temperature) is normal, count tempNormalNo
 				 */
-				else if(symptom[0].contentEquals("normal")) {
+				else if(symptom[0].equals("normal")) {
 					
 					setTempNormalNo(getTempNormalNo() + 1);
 				}
@@ -316,7 +291,7 @@ public class NaiveBayes {
 				/*
 				 * If first element(temperature) is cool, count tempCoolNo
 				 */
-				else if(symptom[0].contentEquals("cool")) {
+				else if(symptom[0].equals("cool")) {
 					
 					setTempCoolNo(getTempCoolNo() + 1);
 				}
@@ -324,7 +299,7 @@ public class NaiveBayes {
 				/*
 				 * If first element(temperature) is cold, count tempColdNo
 				 */
-				else if(symptom[0].contentEquals("cold")) {
+				else if(symptom[0].equals("cold")) {
 					
 					setTempColdNo(getTempColdNo() + 1);
 				}
@@ -332,7 +307,7 @@ public class NaiveBayes {
 				/*
 				 * If second element(Aches) is yes, count acheNo
 				 */
-				if(symptom[1].contentEquals("yes")) {
+				if(symptom[1].equals("yes")) {
 					
 					setAchesNo(getAchesNo() + 1);
 				}
@@ -348,7 +323,7 @@ public class NaiveBayes {
 				/*
 				 * If third element(Cough) is yes, count coughNo
 				 */
-				if(symptom[2].contentEquals("yes")) {
+				if(symptom[2].equals("yes")) {
 					
 					setCoughNo(getCoughNo() + 1);
 				}
@@ -365,7 +340,7 @@ public class NaiveBayes {
 				 * If fourth element(Sore throat) is yes, count soreThroatNo
 				 */				
 				 
-				if(symptom[3].contentEquals("yes")) {
+				if(symptom[3].equals("yes")) {
 					
 					setSoreThroatNo(getSoreThroatNo() + 1);
 				}
@@ -381,7 +356,7 @@ public class NaiveBayes {
 				/*
 				 * if the fifth element(danger zone) is yes, count dangerZoneNo
 				 */
-				if(symptom[4].contentEquals("yes")) {
+				if(symptom[4].equals("yes")) {
 					
 					setDangerZoneNo(getDangerZoneNo() + 1);
 				}
@@ -397,6 +372,318 @@ public class NaiveBayes {
 			}
 		}
 	}
+	
+	/*
+
+	 * --Calculations to check if answers were right for Classifier--
+	 * 
+	 * 
+	 * Have CoronaVirus: p(yes) = 17/76, p(no) = 59/76
+	 * 
+	 * temperatureHot: p(yes) = 8/17, p(no) = 11/59
+	 * temperatureNormal: p(yes) = 8/17, p(no) = 26/59
+	 * temperatureCool: p(yes) = 1/17, p(no) = 17/59
+	 * temperatureCold: p(yes) = 0/17, p(no) = 5/59
+	 * 
+	 * achesYes: p(yes) = 12/17, p(no) = 11/59
+	 * achesNo: p(yes) = 5/17, p(no) = 48/59
+	 * 
+	 * coughYes: p(yes) = 13/17, p(no) = 33/59
+	 * coughNo: p(yes) = 4/17, p(no) = 26/59
+	 * 
+	 * soreThroatYes: p(yes) = 12/17, p(no) = 22/59
+	 * soreThroatNo: p(yes) = 5/17, p(no) = 37/59
+	 * 
+	 * dangerZoneYes: p(yes) = 11/17, p(no) = 11/59
+	 * dangerZoneNo: p(yes) = 6/17, p(no) = 48/59
+	 * 
+	 * -- --
+	 * 
+	 * 
+	 * 
+	 */
+
+	
+	/*
+	 * Method to be used in the GUIscreen.
+	 * These are boolean as JRadioButtons are used in the GUI so when the are selected they are true and 
+	 * when they are not selected they are false
+	 */
+	public String patientAccess(boolean tempButtonHot,boolean tempButtonNormal,boolean tempButtonCool, boolean tempButtonCold, boolean achesButtonYes,boolean achesButtonNo,
+				boolean coughButtonYes,boolean coughButtonNo, boolean soreThroatButtonYes,boolean soreThroatButtonNo, boolean dangerZoneButtonYes, boolean dangerZoneButtonNo) {
+		
+		
+		/*
+		 * Variables for the Probability yes/no or with/Without CoronaVirus
+		 */
+		double probabilityYes;
+		
+		double probabilityNo;
+
+		/*
+		 * Created variables to store the Probabilities(values) when the if statements further down have executed. 
+		 */
+		
+		int tempSelectedYes;
+		tempSelectedYes = 0;
+		
+		int tempSelectedNo;
+		tempSelectedNo = 0;
+		
+		/*
+		 * Variables for the Patients selection 
+		 */
+		int achesSelectedYes;
+		achesSelectedYes = 0;
+		
+		int achesSelectedNo;
+		achesSelectedNo = 0;
+		
+		/*
+		 * Variables for the Patients selection 
+		 */
+		int coughSelectedYes;
+		coughSelectedYes = 0;
+		
+		int coughSelectedNo;
+		coughSelectedNo = 0;
+		
+		/*
+		 * Variables for the Patients selection 
+		 */
+		int soreThroatSelectedYes;	
+		soreThroatSelectedYes = 0;
+		
+		int soreThroatSelectedNo;
+		soreThroatSelectedNo = 0;
+		
+		/*
+		 * Variables for the Patients selection 
+		 */
+		int dangerZoneSelectedYes;
+		dangerZoneSelectedYes = 0;
+		
+		int dangerZoneSelectedNo;
+		dangerZoneSelectedNo = 0;
+		
+				
+		/*
+		 * If button is true(hot) then store method in variable(do similar for all if statements)
+		 */
+		if (tempButtonHot == true) {
+			
+			tempSelectedYes = getTempHotYes(); //method for hot temperature and CoronaVirus
+			
+			tempSelectedNo = getTempHotNo(); //method for hot temperature and no CoronaVirus
+		}
+		
+		/*
+		 * Variables for the Patients selection 
+		 */
+		else if (tempButtonNormal == true) {
+			
+			tempSelectedYes = getTempNormalYes(); //   "
+			
+			tempSelectedNo = getTempNormalNo();//   "
+		}
+		
+		/*
+		 * Variables for the Patients selection 
+		 */
+		else if (tempButtonCool == true) {
+			
+			tempSelectedYes = getTempCoolYes();
+			
+			tempSelectedNo = getTempCoolNo();
+		}
+		
+		/*
+		 * Variables for the Patients selection 
+		 */
+		else if (tempButtonCold == true) {
+			
+			tempSelectedYes = getTempColdYes();
+			
+			tempSelectedNo = getTempColdNo();
+		}
+		
+		/*
+		 * Variables for the Patients selection 
+		 */
+		
+		if (achesButtonYes == true) {
+			
+			achesSelectedYes = getAchesYes();
+			
+			achesSelectedNo = getAchesNo();
+		}
+		
+		/*
+		 * Variables for the Patients selection 
+		 */
+		else if (achesButtonNo == true) {
+			
+			achesSelectedYes = getNoAchesYes();
+			
+			achesSelectedNo = getNoAchesNo();
+		}
+		
+		/*
+		 * Variables for the Patients selection 
+		 */
+		if (coughButtonYes == true) {
+			
+			coughSelectedYes = getCoughYes();
+			
+			coughSelectedNo = getCoughNo();
+		}
+		
+		/*
+		 * Variables for the Patients selection 
+		 */
+		else if (coughButtonNo == true)  {
+			
+			coughSelectedYes = getNoCoughYes();
+			
+			coughSelectedNo = getNoCoughNo();
+		}
+		
+		/*
+		 * Variables for the Patients selection 
+		 */
+		
+		if (soreThroatButtonYes == true) {
+			
+			soreThroatSelectedYes = getSoreThroatYes();
+			
+			soreThroatSelectedNo = getSoreThroatNo();
+			
+			
+		}
+		/*
+		 * Variables for the Patients selection 
+		 */
+		else if (soreThroatButtonNo == true) {
+			
+			soreThroatSelectedYes = getNoSoreThroatYes();
+			
+			soreThroatSelectedNo = getNoSoreThroatYes();
+			
+		}
+		
+		
+		/*
+		 * Variables for the Patients selection 
+		 */
+		if (dangerZoneButtonYes == true) {
+			
+			dangerZoneSelectedYes = getDangerZoneYes();
+			
+			dangerZoneSelectedNo = getDangerZoneNo();
+		}
+		
+		
+		/*
+		 * Variables for the Patients selection 
+		 */
+		else if (dangerZoneButtonNo == true) {
+			
+			dangerZoneSelectedYes = getNoDangerZoneYes();
+			
+			dangerZoneSelectedNo = getNoDangerZoneNo();
+		}
+		
+		/*
+		* Variable to store naiveBayesProbability(var1)
+		*/
+		double var1 = naiveBayesProbability(tempSelectedYes, achesSelectedYes, coughSelectedYes, soreThroatSelectedYes, dangerZoneSelectedYes, getAmountHaveCorona());
+		/*
+		* Variable to store naiveBayesProbability(var1)
+		*/
+		double var2 = naiveBayesProbability(tempSelectedNo, achesSelectedNo, coughSelectedNo, soreThroatSelectedNo, dangerZoneSelectedNo, getAmountWithoutCorona());				
+		
+		/*
+		 * probabilityYes is equal to the manageProbabilty Method with var1 and var2 acting as firstNum and secondNum
+		 */
+		probabilityYes = manageProbability(var1, var2);
+		probabilityYes = (int)(probabilityYes * 100);
+		
+		probabilityNo = manageProbability(var2, var1);
+		probabilityNo= (int)(probabilityNo * 100);
+				
+		
+		/*
+		 * 
+		 */
+		
+								
+
+		
+		/*
+		 * If the yes is greater than no return yes
+		 */
+		if (probabilityYes > probabilityNo) {
+			String answer1 = "You are " + probabilityYes + "% likely to have the CoronaVirus";
+			
+			return answer1;
+		}
+		
+		/*
+		 *  If the no is greater than yes return no
+		 */
+		else {
+			String answer2 = "You are only " + probabilityNo + "% likely to have the CoronaVirus ";
+			
+			return answer2;
+		}
+	}
+	
+	
+	
+	
+	
+	
+	/*
+	 * Method for Final Calculations, Multiplying all the probabilities that have been counted
+	 */
+	public double naiveBayesProbability(int tempCounter, int achesCounter, int coughCounter, 
+			int soreThroatCounter, int dangerZoneCounter, int patientCounter) {
+		/*
+		 * all Numbers are divided by the patient counter which should be either the number 17 or the number 59, except for 
+		 * the last sum which is 17/59 divided by the amount with CoronaVirus + amount without CoronaVirus which is the whole data set (76)
+		 */
+		double finalProb;
+		
+		finalProb = 	( (double)tempCounter / (double)patientCounter ) * ( (double)achesCounter / (double)patientCounter ) *
+								( (double)coughCounter / (double)patientCounter ) * ( (double)soreThroatCounter / (double)patientCounter ) *								
+								( (double)dangerZoneCounter / (double)patientCounter ) * ( (double)patientCounter / (double)(getAmountHaveCorona() + getAmountWithoutCorona() ));
+																								//^this^ is "last sum".
+		/*
+		 * Return answer to sum
+		 */
+		return finalProb;
+	}
+	
+	
+	/*
+	 * 	Converts answer from to a more readable format.
+	 *  Instead of a fraction it will be one number.
+	 */
+	public double manageProbability(double firstNum, double secondNum) {
+		
+		double finalProb;
+		
+		/*
+		 * sum to divide(final calculations)
+		 */
+		finalProb = firstNum / (firstNum + secondNum);
+		return finalProb;
+	}
+	
+	
+	
+	
+	
 	
 	
 	/*
@@ -988,34 +1275,8 @@ public class NaiveBayes {
 	
 	
 
-/*
 
- * --Calculations to check if answers were right for Classifier--
- * 
- * 
- * Have CoronaVirus: p(yes) = 17/76, p(no) = 59/76
- * 
- * temperatureHot: p(yes) = 8/17, p(no) = 11/59
- * temperatureNormal: p(yes) = 8/17, p(no) = 26/59
- * temperatureCool: p(yes) = 1/17, p(no) = 17/59
- * temperatureCold: p(yes) = 0/17, p(no) = 5/59
- * 
- * achesYes: p(yes) = 12/17, p(no) = 11/59
- * achesNo: p(yes) = 5/17, p(no) = 48/59
- * 
- * coughYes: p(yes) = 13/17, p(no) = 33/59
- * coughNo: p(yes) = 4/17, p(no) = 26/59
- * 
- * soreThroatYes: p(yes) = 12/17, p(no) = 22/59
- * soreThroatNo: p(yes) = 5/17, p(no) = 37/59
- * 
- * dangerZoneYes: p(yes) = 11/17, p(no) = 11/59
- * dangerZoneNo: p(yes) = 6/17, p(no) = 48/59
- * 
- * -- --
- * 
- * 
- * 
- */
+
+
 
 
